@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-8 col-sm-12">
+        {% include 'messages/messages.html' %}
+        {% if articles %}
+        {% for article in articles %}
+
+        <div class="col shadow p-3 mb-5 bg-white rounded mb-2">
+            <div class="row">
+                <div class="col-md-5 col-sm-12 mr-2">
+                    <div>
+                        <img src="{{ article.thumbnail.url}}" class="p-1 thumb">
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-sm-12 p-2">
+                    <div class="row ">
+                        <div>
+                            <div class="col d-flex">
+                                <img src="{{ article.author.profile.image.url }}" class="rounded-circle mr-2"
+                                    style="width:100px;height:100px">
+                                <div>
+                                    <h2 class="border-bottom">
+                                        <a href="{% url 'article-detail' article.slug %}">{{article.title_snippet}}</a>
+                                    </h2>
+                                    <p>{{article.date_created | timesince}} ago by : {{article.author}}</p>
+                                    <p class="text-label"> </p>
+
+                                </div>
+                            </div>
+                            <div class="col border-bottom mb-2">
+                                <p class="text-muted">{{article.body_snippet}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 d-flex ">
+                    <p class="text-warning text-uppercase font-weight-bold mr-auto">{{article.category}}</p>
+                    <a href="{% url 'article-detail' article.slug %}" class="btn btn-primary"> Read
+                        More</a>
+                </div>
+
+            </div>
+
+
+        </div>
+        {%endfor%}
+        {%else%}
+            <h2 class="text-center text-secondary border-top p-3">No article yet</h2>
+        {%endif%}
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+        {% include 'sidebar/sidebar.html' %}
+    </div>
+
+</div>
+{% endblock %}

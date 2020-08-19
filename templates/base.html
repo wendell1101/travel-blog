@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelKing</title>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/account_form.css' %}">
+
+    <!-- CSS only -->
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/sandstone/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" />
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src=”https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js”></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}"><img class="logo"
+                        src="{% static 'images/logo2.png'%}"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                       
+                        {% if user.is_authenticated %}
+                            <li class="nav-item active d-flex link-profile">
+                                <a class="nav-link" href="{% url 'accounts:profile' user.profile.slug %}"> <img src="{{user.profile.image.url}}" style="width:35px" class="rounded-circle"> {{user.username}} <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'index' %}">Dashboard <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'accounts:register' %}" class="nav-link">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'accounts:login' %}" class="nav-link">Login</a>
+                            </li>
+                        {% endif %}
+                        
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <div class="shadow social-media" id="social-media">
+        <div class="mb-2 fb-icon"><!--facebook-->
+            <a href="https://www.facebook.com/wendell1101" class="btn-floating btn-lg btn-tw text-white" type="button" role="button">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </div>
+        <div class="mb-2 twitter-icon"><!--Twitter-->
+            <a href="https://twitter.com/wendell1101" class="btn-floating btn-lg btn-tw text-white" type="button" role="button">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <div class="mb-2 github-icon"><!--Github-->
+            <a href="https://github.com/wendell1101" class="btn-floating btn-lg btn-tw text-white" type="button" role="button">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% include 'footer.html' %}
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/socialMedia.js' %}"></script>
+</body>
+
+</html>

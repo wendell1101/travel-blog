@@ -1,0 +1,9 @@
+{% if categories %}
+    {% for category in categories%}
+    <li class="list-group-item mb-2">
+        <a href="{% url 'category-detail' category.slug%}">{{category}}</a>
+    </li>
+    {% endfor %}
+{% else %}
+    <h2>No Category Yet</h2>
+{% endif %}

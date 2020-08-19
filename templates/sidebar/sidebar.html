@@ -1,0 +1,22 @@
+<div class="shadow p-3 mb-5 bg-white card">
+    <h2 class="text-center text-secondary">Join Us Today</h2>
+    <div class="card card-body">
+        <ul class="list-group">
+            <li class="list-group-item mb-2">
+                <a href="{% url 'article-create' %}">
+                    CreateArticle
+                </a>
+            </li>
+        </ul>
+    </div>
+    <h2 class="text-center text-secondary">Travel Categories</h2>
+    <div class="card card-body">
+        <ul class="list-group">
+            {% for category in categories%}
+            <li class="list-group-item card card-body mb-2">
+                <a href="{% url 'category-detail' category.slug %}">{{category}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

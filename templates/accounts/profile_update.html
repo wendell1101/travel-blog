@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="shadow p-3 bg-white">
+            <form method="POST" action="#" enctype="multipart/form-data">
+                {%csrf_token%}
+                {% for field in u_form.hidden_fields %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                {% endfor %}
+                
+                      
+                <div class="form-group">
+                        <label>Bio: </label> 
+                    {% render_field p_form.bio class="form-control"%}
+                </div>
+               
+                <div class="form-group">
+                    <label>Username: </label> 
+                    {% render_field u_form.username class="form-control"%}
+                </div>
+                <div class="form-group">
+                        <label>Email: </label> 
+                    {% render_field u_form.email class="form-control"%}
+                </div>
+                
+                <div class="form-group">
+                        <label>Profile: </label> 
+                    {% render_field p_form.image %}
+                </div>
+                <div class="form-group">
+                        <label>Cover-image: </label> 
+                    {% render_field p_form.cover_image %}
+                </div>
+                <div class="form-group" style="display: none">
+                        <label>Slug: </label> 
+                    {% render_field p_form.slug %}
+                </div>
+                    
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-warning text-white">Save</button>
+                        <a href="#" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
+        </form>
+        </div>
+            
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+        {% include 'sidebar/sidebar.html' %}
+    </div>
+
+</div>
+<script src="{% static 'js/slugify.js' %}"></script>
+{% endblock %}

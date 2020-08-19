@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8">
+        {% include 'messages/messages.html' %}
+
+        <div class="row">
+            <div class="col-md-12 card card-body"style="height:350px">
+                <img src="{{profile.cover_image.url}}"style="height:100%;width:100%">
+            </div>
+            <div class="d-flex profile">
+                <div class="mr-3" style="flex:1">
+                    <img src="{{profile.image.url}}" class="rounded-circle border"style="width:120px">
+                </div>
+                <div class="my-auto " style="flex:4">
+                    <strong style="font-size:1.5rem">{{profile.user.username}}</strong>
+                    <p>{{profile.user.email}}</p>
+                </div>
+                <div>
+                    <a href="{% url 'accounts:profile-update' profile.slug %}" class="mr-4 mt-2">Edit Information</a>
+                </div>
+            </div>
+            <div class="col-8 mx-auto shadow bio">
+                {% if profile.bio %}
+                    <p class="text-center font-italic text-dark"> " {{profile.bio}} "</p>
+                {%else%}
+                <p class="text-center font-italic text-dark"> No Bio Yet</p>
+                {%endif%}
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+        {% include 'sidebar/sidebar.html' %}
+    </div>
+
+</div>
+{% endblock %}
