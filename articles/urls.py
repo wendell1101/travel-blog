@@ -6,6 +6,7 @@ from .views import (
     ArticleUpdateView,
     ArticleDeleteView,
     CategoryDetailView,
+    like,
 )
 
 urlpatterns = [
@@ -15,5 +16,5 @@ urlpatterns = [
     path('article/update/<slug:slug>/',ArticleUpdateView.as_view(), name='article-update'),
     path('article/delete/<slug:slug>/',ArticleDeleteView.as_view(), name='article-delete'),
     path('category/detail/<slug:slug>/',CategoryDetailView.as_view(), name='category-detail'),
-    
+    path('like/', like, name="like"),
 ]

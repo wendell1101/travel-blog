@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import (
@@ -113,3 +115,21 @@ class CategoryDetailView(DetailView):
         context['articles'] = Article.objects.filter(category=category)
         context['categories'] = Category.objects.all()
         return context
+
+@login_required
+def like(request):
+    if request.method == 'POST':
+        result = ''
+        id = int(request.POST.get('article_id'))
+        article = get_object_or_404(Article, id=id)
+        if article.likes.filter(id = request.user.id).exists():
+            article.likes.remove(request.user)
+            article.like_count -=1
+            result = article.like_count
+            article.save()
+        else:
+            article.likes.add(request.user)
+            article.like_count += 1
+            result = article.like_count
+            article.save()
+        return JsonResponse({'result':result,})

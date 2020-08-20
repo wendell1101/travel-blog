@@ -28,6 +28,9 @@ class Article(models.Model):
     thumbnail = models.ImageField(upload_to='uploads/images',
                                   default="default.jpg")
     
+    likes = models.ManyToManyField(User, related_name="like", default=None,blank=True)
+    like_count = models.BigIntegerField(default='0')
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
