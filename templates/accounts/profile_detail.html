@@ -18,9 +18,11 @@
                     <strong style="font-size:1.5rem">{{profile.user.username}}</strong>
                     <p>{{profile.user.email}}</p>
                 </div>
-                <div>
-                    <a href="{% url 'accounts:profile-update' profile.slug %}" class="mr-4 mt-2">Edit Information</a>
-                </div>
+                {% if user.is_authenticated and user == profile.user%}
+                    <div>
+                        <a href="{% url 'accounts:profile-update' profile.slug %}" class="mr-4 mt-2">Edit Information</a>
+                    </div>                
+                {% endif %}
             </div>
             <div class="col-8 mx-auto shadow bio">
                 {% if profile.bio %}

@@ -1,6 +1,8 @@
 body{
     font-family: 'Roboto', sans-serif!important;
-    background:rgb(216, 213, 213);
+    background:url('../images/bg_final2.png') bottom fixed no-repeat;
+    background-size: cover;
+
 }
 
 
@@ -43,7 +45,7 @@ a{
     justify-content: center;
     transform:translate(0,-110px);
     z-index:10;
-    background: #a2c76f;
+    background: #fff;
     opacity:0.9;
     padding:10px;
 
@@ -54,7 +56,6 @@ a{
     align-items:center;
 }
 .social-media{
-    display:none;
     padding:5px;
     background:#ffffff;
     width:60px;
@@ -67,6 +68,7 @@ a{
     right:5%;
     transition: background-color .3s;
     z-index: 1000;
+    /* display:none; */
 }
 .fb-icon{
     background:#0f4c75;
@@ -107,4 +109,10 @@ a{
     background-color:#4f555a;
     opacity:1;filter:"alpha(opacity=100)";
     -ms-filter:"alpha(opacity=100)";
+}
+
+@media(max-width:720px){
+    .social-media{
+        display:none!important;
+    }
 }

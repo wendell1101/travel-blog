@@ -133,3 +133,6 @@ def like(request):
             result = article.like_count
             article.save()
         return JsonResponse({'result':result,})
+    
+def about(request):
+    return render(request,'about.html',{'categories':Category.objects.all})

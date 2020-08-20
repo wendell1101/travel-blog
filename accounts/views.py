@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect, reverse
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
@@ -41,12 +42,13 @@ class LoginView(LoginView):
 class LogoutView(LogoutView):
     template_name= 'accounts/logout.html'
     
+@login_required 
 def update_profile(request,slug):
     profile = Profile.objects.get(slug = slug)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance = request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES,instance = profile)
-      
+    
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()

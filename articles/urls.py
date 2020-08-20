@@ -7,6 +7,7 @@ from .views import (
     ArticleDeleteView,
     CategoryDetailView,
     like,
+    about,
 )
 
 urlpatterns = [
@@ -17,4 +18,5 @@ urlpatterns = [
     path('article/delete/<slug:slug>/',ArticleDeleteView.as_view(), name='article-delete'),
     path('category/detail/<slug:slug>/',CategoryDetailView.as_view(), name='category-detail'),
     path('like/', like, name="like"),
+    path('about/', about, name="about"),
 ]

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-8 col-sm-12 shadow p-3 mb-5 bg-white card mb-3">
+        {% include 'messages/messages.html' %}
+        <h3 class="font-weight-bold text-dark">Travel Kings</h3>
+        <p class="" style="text-indent: 50px">
+            This is a blogsite for travel experiences. Anyone can share their personal encounters in different places around
+            the world. The categories are divided in different regions. Images of different sceneries, experience, cultures, traditions, etc.
+            are highly appreciated.<br/>
+        </p>
+        <p >
+            Programming Language/Tools Use to build this application:<br/>
+        </p>
+        <p class="ml-3">
+            - Python <br/>
+            - Django <br/>
+            -Javascript <br/>
+            -JQuery <br/>
+            -Css <br/>
+            -HTML <br/>
+        </p>
+        <p>Made by: Wendell Suazo</p>
+        
+    </div>
+
+    <div class="col-md-4 col-sm-12">
+        {% include 'sidebar/sidebar.html' %}
+    </div>
+
+</div>
+
+
+
+{% endblock %}
+{% block scripts %}
+    
+{% endblock scripts%}
