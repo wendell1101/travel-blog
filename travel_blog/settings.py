@@ -12,7 +12,9 @@ SECRET_KEY = '(vp*9ecoa(r!1ce_9x-+z(o2gjnn5_fyyljg*410cob$(%1skf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'travel-kings.herokuapp.com',
+]
 
 # Application definition
 
