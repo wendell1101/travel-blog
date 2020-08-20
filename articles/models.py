@@ -26,7 +26,7 @@ class Article(models.Model):
     date_created = models.DateTimeField(default=datetime.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to='uploads/images',
-                                  default="default.jpg")
+                                  default="default_article.jpg")
     
     likes = models.ManyToManyField(User, related_name="like", default=None,blank=True)
     like_count = models.BigIntegerField(default='0')
