@@ -8,7 +8,7 @@ class Profile(models.Model):
     slug = models.SlugField(blank = True)
     bio = models.CharField(max_length=255, blank=True)
     image = models.ImageField(default = 'default.png',upload_to="profiles")
-    cover_image = models.ImageField(default = 'default_cover.png',upload_to="cover_images")
+    cover_image = models.ImageField(default = 'default_cover.jpg',upload_to="cover_images")
     
     def __str__(self):
         return f'{self.user.username} - Profile'

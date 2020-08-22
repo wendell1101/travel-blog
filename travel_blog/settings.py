@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'articles',
     'crispy_forms',
     'widget_tweaks',
-    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -126,9 +125,6 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-
-SUMMERNOTE_THEME = 'bs4'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 

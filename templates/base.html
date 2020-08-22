@@ -46,10 +46,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" id="navbar">
                        
                         {% if user.is_authenticated %}
-                            <li class="nav-item active d-flex link-profile">
+                            <li class="nav-item d-flex link-profile">
                                 <a class="nav-link" href="{% url 'accounts:profile' user.profile.slug %}"> <img src="{{user.profile.image.url}}" style="width:35px" class="rounded-circle"> {{user.username}} <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">

@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-6 col-sm-12 p-2">
                     <div class="row ">
-                        <div>
+                        <div >
                             <div class="col d-flex">
                                 <img src="{{ article.author.profile.image.url }}" class="rounded-circle mr-2"
                                     style="width:100px;height:100px">
@@ -34,8 +34,8 @@
                                     <p class="text-label"> </p>
                                 </div>
                             </div>
-                            <div class="col border-bottom mb-2">
-                                <p class="text-muted">{{article.body_snippet}}</p>
+                            <div class="col  mb-2">
+                                <p class="text-muted border-bottom pb-3" style="width:100%">{{article.body_snippet}}</p>
                             </div>
                         </div>
                     </div>
@@ -48,20 +48,27 @@
                         <div class="d-flex mr-auto">
                             {% if request.user in article.likes.all %}
                                 {% csrf_token%}
-                                <a  href="{% url 'article-detail' article.slug %}" class="text-danger p-0 border-0 btn-outline-light mr-2" id="{{article.id}}" value="{{article.id}}">
+                                <span class="text-danger p-0 border-0 btn-outline-light mr-2" id="{{article.id}}" value="{{article.id}}">
                                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                                       </svg>
-                                </a>
+                                    </span>
                             {% else %}
                                 {% csrf_token%}
-                                <a href="{% url 'article-detail' article.slug %}" class="text-danger p-0 border-0 btn-outline-light mr-2" id="like-button" value="{{article.id}}">
+                                <span class="text-danger p-0 border-0 btn-outline-light mr-2" id="like-button" value="{{article.id}}">
                                     <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                                     </svg>
-                                </a>
+                                </span>
                             {% endif %}
-                            <span id="like_count">{{article.like_count}} likes </span>
+                            
+                            <span id="like_count">{{article.like_count}} 
+                                {% if article.like_count > 1 %}
+                                    likes 
+                                {% else %}
+                                    like
+                                {% endif %}
+                            </span>
                         </div>
                            
                     {% else %}
@@ -93,7 +100,9 @@
         </div>
         {%endfor%}
         {%else%}
-            <h2 class="text-center text-secondary border-top p-3">No article yet</h2>
+            <div class="shadow-sm p-3 mb-5 bg-white rounded mb-2">
+                <h2 class="text-center text-secondary p-3">No article yet</h2>
+            </div>
         {%endif%}
     </div>
 
